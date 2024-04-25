@@ -1,0 +1,9 @@
+torch==1.13.0 torchvision==0.14.0 torchaudio==0.13.0 --extra-index-url https://download.pytorch.org/whl/cu117
+packaging
+timm==0.4.12
+pytest chardet yacs termcolor
+submitit tensorboardX
+triton==2.0.0
+causal_conv1d==1.0.0  # causal_conv1d-1.0.0+cu118torch1.13cxx11abiFALSE-cp38-cp38-linux_x86_64.whl
+mamba_ssm==1.0.1  # mmamba_ssm-1.0.1+cu118torch1.13cxx11abiFALSE-cp38-cp38-linux_x86_64.whl
+scikit-learn matplotlib thop h5py SimpleITK scikit-image medpy yacs
