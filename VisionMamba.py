@@ -9,12 +9,9 @@ import torch.nn.functional as F
 import torch.utils.checkpoint as checkpoint
 from einops import rearrange, repeat
 from timm.models.layers import DropPath, to_2tuple, trunc_normal_
-try:
-    from mamba_ssm.ops.selective_scan_interface import selective_scan_fn, selective_scan_ref
-except:
-    pass
 
-#device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
 # an alternative for mamba_ssm (in which causal_conv1d is needed)
@@ -25,6 +22,14 @@ except:
     pass
 
 DropPath.__repr__ = lambda self: f"timm.DropPath({self.drop_prob})"
+
+
+
+try:
+    from mamba_ssm.ops.selective_scan_interface import selective_scan_fn, selective_scan_ref
+except:
+    pass
+
 
 
 def flops_selective_scan_ref(B=1, L=256, D=768, N=16, with_D=True, with_Z=False, with_Group=True, with_complex=False):
@@ -759,8 +764,3 @@ class VSSM(nn.Module):
         x = self.head(x)
         return x
 
-
-# model = VSSM(num_classes=2).to("cpu")
-# #
-# data = torch.randn(1,3,224,224).to("cpu")
-# print(model(data).shape)
